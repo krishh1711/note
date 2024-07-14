@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.task.notes.ui.noteview.NoteViewViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/viewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/edit_button"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/color_transparent"
+                    android:src="@drawable/edit" />
+                    <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/share"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/color_transparent"
+                    android:src="@drawable/ic_share" />
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/title_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/color_transparent"
+                    android:fontFamily="@font/outfit_bold"
+                    android:hint="@string/title"
+                    android:maxLength="100"
+                    android:maxLines="2"
+                    android:text="@={viewModel.notesTitle}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_25ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/description_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/color_transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:hint="@string/description"
+                    android:maxLength="100"
+                    android:maxLines="2"
+                    android:text="@={viewModel.notesDescription}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_edit_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/category_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background_curved"
+                    android:backgroundTint="@color/grey"
+                    android:fontFamily="@font/outfit_regular"
+                    android:hint="@string/category"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@={viewModel.category}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description_edit_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/content_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/color_transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:hint="@string/content"
+                    android:text="@={viewModel.notesContent}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category_text_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/_25sdp"
+            android:background="@drawable/background_curved"
+            android:fontFamily="@font/outfit_medium"
+            android:text="@string/saveNote"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_18ssp"
+            android:visibility="gone" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

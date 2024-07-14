@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.task.notes.ui.noteslist.NotesListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/categories_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="Categories"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categories_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/notesList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categories_title"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
+            android:text="No Categories Found"
+            android:textSize="@dimen/_18ssp"
+            android:visibility="@{viewModel.listCategoriesIsEmpty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/categories_list"
+            app:layout_constraintStart_toStartOf="@+id/categories_list"
+            app:layout_constraintTop_toBottomOf="@+id/categories_list" />
+
+        <TextView
+            android:id="@+id/notes_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="Notes"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categories_list" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notesList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notes_title" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/empty_list_image"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/no_results"
+            android:visibility="@{viewModel.listIsEmpty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/notesList"
+            app:layout_constraintStart_toStartOf="@+id/notesList"
+            app:layout_constraintTop_toTopOf="@+id/notesList" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/no_results_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
+            android:text="No Results Found"
+            android:textSize="@dimen/_18ssp"
+            android:visibility="@{viewModel.listIsEmpty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/empty_list_image"
+            app:layout_constraintStart_toStartOf="@+id/empty_list_image"
+            app:layout_constraintTop_toBottomOf="@+id/empty_list_image" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

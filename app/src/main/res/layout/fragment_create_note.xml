@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.task.notes.ui.createnote.CreateNoteViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_130sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/title_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/color_transparent"
+                    android:fontFamily="@font/outfit_bold"
+                    android:hint="@string/title"
+                    android:maxLength="100"
+                    android:maxLines="2"
+                    android:text="@={viewModel.notesTitle}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_25ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/title" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/description_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/color_transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:hint="@string/description"
+                    android:maxLength="100"
+                    android:maxLines="2"
+                    android:text="@={viewModel.notesDescription}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_edit_text"
+                    tools:text="@string/description" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/category_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/color_transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:hint="@string/category"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:text="@={viewModel.category}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description_edit_text" />
+
+                <Spinner
+                    android:id="@+id/category_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/color_transparent"
+                    android:entries="@{viewModel.categoryList}"
+                    android:fontFamily="@font/outfit_regular"
+                    android:hint="@string/category"
+                    android:onItemSelectedListener="@{viewModel.categorySelectedListener}"
+                    android:spinnerMode="dropdown"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/category_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/category_text_view" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/content_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/color_transparent"
+                    android:fontFamily="@font/outfit_regular"
+                    android:hint="@string/content"
+                    android:text="@={viewModel.notesContent}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category_text_view"
+                    tools:text="@string/content" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="@dimen/_90sdp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/google_sign_out"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_90sdp"
+            android:visibility="gone"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/_25sdp"
+            android:background="@drawable/background_curved"
+            android:fontFamily="@font/outfit_medium"
+            android:onClick="@{viewModel::createNote}"
+            android:text="@string/saveNote"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_18ssp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

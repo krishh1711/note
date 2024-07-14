@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.task.notes.data.model.NotesDataModel" />
+        <variable
+            name="listener"
+            type="com.task.notes.ui.noteslist.NotesCategoriesAdapter.NoteCategoryItemListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->listener.onItemSelected()}"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_12sdp"
+        app:cardUseCompatPadding="true">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/note_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:fontFamily="@font/outfit_regular"
+            android:gravity="center"
+            android:maxWidth="@dimen/_190sdp"
+            android:maxLines="2"
+            android:text="@{model.categoriesList}"
+            android:minWidth="@dimen/_80sdp"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/content_default_preview" />
+
+    </androidx.cardview.widget.CardView>
+</layout>
